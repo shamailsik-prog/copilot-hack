@@ -4,6 +4,9 @@
 
 > **[Start hacking!](./hackathon.md)**
 
+A completed walkthrough of the challenges - model, API and frontend - lives in
+[`app/`](./app/README.md).
+
 ## Requirements
 
 This project is configured with a [devcontainer](./.devcontainer/devcontainer.json), which can be [run locally](https://code.visualstudio.com/docs/devcontainers/containers) or in a [codespace](https://github.com/features/codespaces). Please refer to the [setup exercise](./content/0-get-started.md) for more information.
