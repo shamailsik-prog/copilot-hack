@@ -1,0 +1,30 @@
+{
+	// Resolver-only tsconfig, used exclusively by dependency-cruiser.
+	//
+	// dependency-cruiser resolves `paths` relative to `baseUrl`, and the tsconfig
+	// SvelteKit generates at .svelte-kit/tsconfig.json declares `$lib` without one
+	// (TypeScript itself falls back to the declaring file's directory; the resolver
+	// does not). Extending that file therefore leaves every `$lib/...` import
+	// unresolvable. This file restates the same two aliases against an explicit
+	// baseUrl so the layering rules in .dependency-cruiser.js can actually see the
+	// edges between src/routes and src/lib.
+	//
+	// Keep in sync with the `alias` block in svelte.config.js if aliases are ever
+	// added there. This file is not part of the build — ./tsconfig.json is.
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"],
+			// SvelteKit maps these through a Vite alias at build time, not through
+			// a package export, so the resolver needs them spelled out too.
+			"$app/*": ["node_modules/@sveltejs/kit/src/runtime/app/*"]
+		},
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"target": "esnext",
+		"allowJs": true,
+		"noEmit": true
+	},
+	"include": ["src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
+}

@@ -1,0 +1,51 @@
+# Enforces the import boundaries described in
+# possible-solution/client/.dependency-cruiser.js.
+#
+# Scoped to the SvelteKit client because that is the only JS/TS package in the
+# repo; the Flask service in possible-solution/server is Python and is reached
+# over HTTP, not by import.
+
+name: Architecture
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'possible-solution/client/**'
+      - '.github/workflows/architecture.yml'
+  pull_request:
+    paths:
+      - 'possible-solution/client/**'
+      - '.github/workflows/architecture.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-cruiser:
+    name: Check import boundaries
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: possible-solution/client
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 'lts/*' matches the Node version the devcontainer installs
+      # (.devcontainer/devcontainer.json -> features -> node -> version: lts).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: possible-solution/client/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # No `svelte-kit sync` step: the cruise resolves `$lib` and `$app/*`
+      # through tsconfig.depcruise.json, not through the generated
+      # .svelte-kit/tsconfig.json, so it runs on a clean checkout.
+      - name: Validate architecture rules
+        run: npm run depcruise

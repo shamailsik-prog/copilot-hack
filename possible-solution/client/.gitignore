@@ -8,3 +8,7 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# dependency-cruiser graph output
+dependency-graph.mmd
+dependency-graph.svg
