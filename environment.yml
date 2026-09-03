@@ -4,3 +4,7 @@ dependencies:
   - numpy
   - psycopg2
   - pylint
+  - pip
+  - pip:
+      # Scrapling: HTML parsing plus HTTP/browser fetchers. See docs/scrapling-setup.md.
+      - "scrapling[fetchers]"

@@ -10,6 +10,8 @@ This project is configured with a [devcontainer](./.devcontainer/devcontainer.js
 
 The project does assume you are familiar with programming, but is not prescriptive about language or framework choice.
 
+The container also includes [Scrapling](https://github.com/D4Vinci/Scrapling) for web scraping; see [Scrapling setup](./docs/scrapling-setup.md) for how to verify and use it.
+
 ## License 
 
 This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE.txt) for the full terms.
