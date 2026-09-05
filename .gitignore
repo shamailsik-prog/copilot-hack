@@ -348,3 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Claude Code machine-local settings
+.claude/settings.local.json
+
+# Impeccable runtime cache and machine-local config
+.impeccable/hook.cache.json
+.impeccable/config.local.json

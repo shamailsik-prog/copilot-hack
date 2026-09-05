@@ -1,0 +1,32 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "perplexity-api-key",
+      "description": "Perplexity API Key (https://console.perplexity.ai)",
+      "password": true
+    },
+    {
+      "type": "promptString",
+      "id": "firecrawl-api-key",
+      "description": "Firecrawl API Key (https://firecrawl.dev/app/api-keys) — leave blank for the keyless free tier",
+      "password": true
+    }
+  ],
+  "servers": {
+    "perplexity": {
+      "type": "http",
+      "url": "https://api.perplexity.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:perplexity-api-key}"
+      }
+    },
+    "firecrawl": {
+      "type": "http",
+      "url": "https://mcp.firecrawl.dev/v2/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:firecrawl-api-key}"
+      }
+    }
+  }
+}
