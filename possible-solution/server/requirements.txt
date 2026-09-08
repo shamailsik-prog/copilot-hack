@@ -1,2 +1,7 @@
 flask
+# model.pkl is a scikit-learn LogisticRegression pickled with 1.2.2, which
+# was built against the numpy 1.x ABI. Pin both so the model unpickles without
+# an InconsistentVersionWarning and numpy stays binary-compatible with sklearn.
+numpy<2
 pandas
+scikit-learn==1.2.2
